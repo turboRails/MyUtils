@@ -35,7 +35,7 @@ function Make-Move {
 }
 
 function ConnectVPN {
-    if ($(Get-VpnConnection -Name "Emergency VPN Japan").ConnectionStatus -eq "Disconnected") {
+    if ($(Get-VpnConnection -Name "VPN").ConnectionStatus -eq "Disconnected") {
         echo "Disconnected"
         rasphone
         Start-Sleep 2
@@ -45,7 +45,7 @@ function ConnectVPN {
 }
 
 function Connect {
-    if (Test-Connection -ComputerName dta-jira.jpadc.corpintra.net  -Quiet) {
+    if (Test-Connection -ComputerName jira -Quiet) {
         echo "Connected"
         Start-Sleep 4
     }
@@ -59,7 +59,7 @@ function Connect {
 
 
 Connect
-powershell.exe -Command "& 'C:\Program Files (x86)\FUSOTimeTracker\Work time card system.jar'"
+powershell.exe -Command "& 'C:\Program Files (x86)\work.jar'"
 Start-Sleep -s 4
 Make-Move -X $X -Y $Y
 
